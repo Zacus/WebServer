@@ -7,17 +7,17 @@
 
 
 //信号量类
-class sem{
+class Sem{
 
 	public:
-		sem(){
+		Sem(){
 			if(sem_init(&m_sem,0,0)!=0){
 
 				throw std::exception();
 			}
 		}
 
-		sem(int num){
+		Sem(int num){
 
 			if(sem_init(&m_sem, 0, num)!=0){
 
@@ -25,7 +25,7 @@ class sem{
 			}
 		}
 
-		~sem(){
+		~Sem(){
 
 			sem_destroy(&m_sem);
 		}
@@ -48,10 +48,10 @@ class sem{
 };
 
 //互斥锁类
-class locker{
+class Locker{
 
 	public:
-		locker(){
+		Locker(){
 
 			if(pthread_mutex_init(&m_mutex, NULL) != 0){
 
@@ -59,7 +59,7 @@ class locker{
 			}
 		}
 
-		~locker(){
+		~Locker(){
 
 			pthread_mutex_destroy(&m_mutex);
 		}
@@ -89,10 +89,10 @@ class locker{
 };
 
 //条件变量类
-class cond{
+class Cond{
 
 	public:
-		cond(){
+		Cond(){
 
 			if(pthread_cond_init(&m_cond, NULL) !=0){
 
@@ -100,7 +100,7 @@ class cond{
 			}
 		}
 
-		~cond(){
+		~Cond(){
 
 			pthread_cond_destroy(&m_cond);
 		}
